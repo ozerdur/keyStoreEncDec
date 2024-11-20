@@ -1,7 +1,19 @@
-﻿using Microsoft.Extensions.Configuration;
-
+﻿
+Console.Write("KeyStore File Yaratmak istiyor musunuz?  Y/N: ");
+string answer = Console.ReadLine();
 
 CryptoUtil.LoadConfig();
+
+if(answer.Equals("Y", StringComparison.OrdinalIgnoreCase))
+{
+  Console.Write("Enter KeyStore Key: ");
+    
+    string key = Console.ReadLine();
+
+    CryptoUtil.WriteKeyValueToKeystore(CryptoUtil.storeAlias, key);
+}
+
+CryptoUtil.LoadKeys();
 
 Console.Write("Enter text to encrypt: ");
 string originalText = Console.ReadLine();

@@ -16,8 +16,11 @@ public class CryptoUtil
 
     private static string filePath;
     private static string storeKey;
+    public static string storeAlias;
     private static byte[] keyBytes;
     private static byte[] ivBytes;
+
+    private static string iv;
     private static string key;
     
     public static string Encrypt(string data)
@@ -114,16 +117,15 @@ public class CryptoUtil
         IConfigurationRoot configuration = builder.Build();
 
         filePath = configuration[encryption_key_store_path] ?? throw new ArgumentNullException(encryption_key_store_path);
-        string iv = configuration[encription_parameter_spec_iv_value] ?? throw new ArgumentNullException(encription_parameter_spec_iv_value);
+        iv = configuration[encription_parameter_spec_iv_value] ?? throw new ArgumentNullException(encription_parameter_spec_iv_value);
         storeKey = configuration[encryption_key_store_password] ?? throw new ArgumentNullException(encryption_key_store_password);
-        string storeAlias = configuration[encryption_key_store_alias] ?? throw new ArgumentNullException(encryption_key_store_alias);
+        storeAlias = configuration[encryption_key_store_alias] ?? throw new ArgumentNullException(encryption_key_store_alias);
 
+    }
 
-        WriteKeyValueToKeystore(storeAlias, "abcdefghijklmnop");
-
-        key =ReadKeyValueFromKeystore(storeAlias);
-
-
+    public static void LoadKeys()
+    {
+        key = ReadKeyValueFromKeystore(storeAlias);
         ivBytes = Encoding.UTF8.GetBytes(iv);
     }
 
