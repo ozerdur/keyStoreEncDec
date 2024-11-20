@@ -1,0 +1,6 @@
+{
+    "ws.encription.key.store.password" : "changeit",
+    "ws.encription.key.store.path": "./wsSecurityCerts",
+    "ws.encription.parameter.spec.iv.value": "ASDFGHJKL1234567",
+    "ws.encription.key.store.alias":"WS_USER_PASSWORD_KEY"
+}
